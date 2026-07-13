@@ -1,8 +1,3 @@
-// =============================
-// TaskFlow Lite - app.js
-// =============================
-
-// DOM Elements
 const taskForm = document.getElementById("taskForm");
 const taskTitle = document.getElementById("taskTitle");
 const taskDescription = document.getElementById("taskDescription");
@@ -21,24 +16,12 @@ const pendingTasks = document.getElementById("pendingTasks");
 const saveBtn = document.getElementById("saveBtn");
 const clearAll = document.getElementById("clearAll");
 
-// =============================
-// Variables
-// =============================
-
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let editTaskId = null;
-
-// =============================
-// Save Tasks
-// =============================
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
-
-// =============================
-// Update Statistics
-// =============================
 
 function updateStats() {
 
@@ -52,24 +35,17 @@ function updateStats() {
 
 }
 
-// =============================
-// Render Tasks
-// =============================
-
 function renderTasks() {
 
     taskList.innerHTML = "";
 
     let filteredTasks = [...tasks];
 
-    // Search
     const search = searchTask.value.toLowerCase();
 
     filteredTasks = filteredTasks.filter(task =>
         task.title.toLowerCase().includes(search)
     );
-
-    // Filter
 
     if (filterStatus.value === "completed") {
 
@@ -169,11 +145,7 @@ function renderTasks() {
     updateStats();
 
 }
-
-// =============================
-// Add / Update Task
-// =============================
-
+ 
 taskForm.addEventListener("submit", function (e) {
 
     e.preventDefault();
@@ -229,10 +201,6 @@ taskForm.addEventListener("submit", function (e) {
 
 });
 
-// =============================
-// Delete
-// =============================
-
 function deleteTask(id) {
 
     if (!confirm("Delete this task?")) return;
@@ -245,10 +213,6 @@ function deleteTask(id) {
 
 }
 
-// =============================
-// Complete
-// =============================
-
 function toggleTask(id) {
 
     const task = tasks.find(task => task.id === id);
@@ -260,10 +224,6 @@ function toggleTask(id) {
     renderTasks();
 
 }
-
-// =============================
-// Edit
-// =============================
 
 function editTask(id) {
 
@@ -291,21 +251,9 @@ function editTask(id) {
 
 }
 
-// =============================
-// Search
-// =============================
-
 searchTask.addEventListener("keyup", renderTasks);
 
-// =============================
-// Filter
-// =============================
-
 filterStatus.addEventListener("change", renderTasks);
-
-// =============================
-// Clear All
-// =============================
 
 clearAll.addEventListener("click", () => {
 
@@ -322,9 +270,5 @@ clearAll.addEventListener("click", () => {
     }
 
 });
-
-// =============================
-// Initial Render
-// =============================
 
 renderTasks();
