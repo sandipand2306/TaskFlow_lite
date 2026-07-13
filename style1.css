@@ -1,0 +1,289 @@
+/* ==========================================================================
+   1. Global Resets & Variables
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #4f46e5;      /* Modern Indigo */
+    --primary-hover: #4338ca;
+    --background-color: #f8fafc;   /* Soft slate gray */
+    --card-background: #ffffff;
+    --text-main: #1e293b;          /* Dark charcoal for readability */
+    --text-muted: #64748b;         /* Cool gray for subtitles/labels */
+    --border-color: #e2e8f0;
+    
+    /* Priority Status Colors */
+    --low-priority: #22c55e;
+    --medium-priority: #eab308;
+    --high-priority: #ef4444;
+    
+    /* Layout properties */
+    --radius: 8px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --transition: all 0.2s ease-in-out;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/* Common layout wrapper */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. Header & Footer
+   ========================================================================== */
+header {
+    background-color: var(--card-background);
+    padding: 30px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 40px;
+}
+
+/* ==========================================================================
+   3. UI Component Cards
+   ========================================================================== */
+.card {
+    background-color: var(--card-background);
+    border-radius: var(--radius);
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+/* A nice little underline beneath card headings */
+.card h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   4. Forms & Interactive Elements
+   ========================================================================== */
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+/* Grouping Priority and Date side-by-side */
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.row .form-group {
+    flex: 1; /* Makes both fields take up equal width */
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background-color: #fff;
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+textarea {
+    resize: vertical; /* Prevents breaking horizontal layout resizing */
+}
+
+/* Buttons */
+button {
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#saveBtn {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#saveBtn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ==========================================================================
+   5. Search, Filter & Statistics
+   ========================================================================== */
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.controls input[type="text"] {
+    flex: 2; /* Search bar takes up double the space */
+}
+
+.controls select {
+    flex: 1; /* Dropdown takes up remaining space */
+}
+
+/* Stats Layout */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.stat-card h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.stat-card p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   6. Dynamic Task List (For your JavaScript)
+   ========================================================================== */
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.task-header h2 {
+    margin-bottom: 0;
+}
+
+#clearAll {
+    background-color: #fee2e2;
+    color: var(--high-priority);
+    font-size: 0.85rem;
+}
+
+#clearAll:hover {
+    background-color: #fca5a5;
+}
+
+/* Single Task Item wrapper template */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    background-color: var(--background-color);
+    transition: var(--transition);
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Strikethrough style for JavaScript completed state */
+.task-item.completed {
+    opacity: 0.6;
+}
+.task-item.completed .task-title-text {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* Responsive adjustments for phones */
+@media (max-width: 600px) {
+    .row, .controls, .stats {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
